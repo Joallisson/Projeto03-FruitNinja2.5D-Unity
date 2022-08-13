@@ -13,7 +13,7 @@ public class FruitSpawner : MonoBehaviour
     {
         StartCoroutine(Spawn());
     }
-    private IEnumerator Spawn()
+    private IEnumerator Spawn() //Esse método instancia novas formigas
     {
         while(true)
         {
