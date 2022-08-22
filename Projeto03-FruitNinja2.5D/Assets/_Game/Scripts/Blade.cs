@@ -64,7 +64,7 @@ public class Blade : MonoBehaviour
             this.transform.position = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
         }
 
-         circleCollider.enabled = false;
+        circleCollider.enabled = false;
         trailRenderer.enabled = false;
     }
 }

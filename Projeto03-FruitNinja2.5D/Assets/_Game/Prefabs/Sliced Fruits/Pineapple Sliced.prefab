@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8600411080668846729}
+  - component: {fileID: -2299192510243079137}
   m_Layer: 0
   m_Name: Pineapple Sliced
   m_TagString: Untagged
@@ -32,6 +33,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2299192510243079137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6201975585688712897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127161a81083a1d4e9adc92534952889, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &463706727482111320
 PrefabInstance:
   m_ObjectHideFlags: 0

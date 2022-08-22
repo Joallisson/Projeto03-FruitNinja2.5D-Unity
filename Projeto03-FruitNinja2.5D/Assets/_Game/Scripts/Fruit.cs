@@ -6,6 +6,7 @@ public class Fruit : MonoBehaviour
 {
     private Rigidbody2D myRB; //RigidBody da fruta
     [SerializeField] private float startForce; //força que é aplicada para a formiga ir para cima
+    public GameObject fruitSliced; //fruta fatiada
     // Start is called before the first frame update
     void Start()
     {
