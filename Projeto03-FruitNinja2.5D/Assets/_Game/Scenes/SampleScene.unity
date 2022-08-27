@@ -123,6 +123,65 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &39994809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 39994811}
+  - component: {fileID: 39994810}
+  m_Layer: 0
+  m_Name: Game Controller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &39994810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39994809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b84b00162f7df5441a40c5e248c46252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  splash: {fileID: 2331074859126004377, guid: 3d62d85a13e410245b070c2b6a9d0bdf, type: 3}
+  appleColor:
+    serializedVersion: 2
+    rgba: 4278719115
+  coconoutColor:
+    serializedVersion: 2
+    rgba: 4280828005
+  orangeColor:
+    serializedVersion: 2
+    rgba: 4279075839
+  pineappleColor:
+    serializedVersion: 2
+    rgba: 4279723449
+  pearColor:
+    serializedVersion: 2
+    rgba: 4278237357
+--- !u!4 &39994811
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39994809}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.0662985, y: 0.19783512, z: -0.69621783}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &217755835
 GameObject:
   m_ObjectHideFlags: 0
