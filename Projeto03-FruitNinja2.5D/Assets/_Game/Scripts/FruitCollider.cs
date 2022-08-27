@@ -6,12 +6,14 @@ public class FruitCollider : MonoBehaviour
 {
     private Fruit fruit;
     private GameController gameController;
+    private UIController uIController;
 
     // Start is called before the first frame update
     void Start()
     {
         fruit = this.gameObject.GetComponent<Fruit>(); //pegando compoenente
         gameController = FindObjectOfType<GameController>(); //pegando objeto
+        uIController = FindObjectOfType<UIController>();
     }
 
     private void OnTriggerEnter2D(Collider2D target) //quando eu triscar em uma fruta
@@ -28,6 +30,16 @@ public class FruitCollider : MonoBehaviour
             tempFruitSliced.transform.GetChild(1).gameObject.GetComponent<Rigidbody>().AddForce(tempFruitSliced.transform.GetChild(1).transform.right * Random.Range(5f, 10f), ForceMode.Impulse);  //uma parte da fruta partica vai para  a direita
             Destroy(this.gameObject); //destrói a fruta inteira assim que que toco nela
             Destroy(tempFruitSliced, 5f); //depois de 5 segundos destrói a fruta partida
+        }
+        else if(target.gameObject.CompareTag("Destroyer")) //Contando as frutas que o jogador não cortou
+        {
+            gameController.fruitCount++; //aumentando a quantidade de vida que ele vai perdendo
+            uIController.imgLives[gameController.fruitCount - 1].color = gameController.uIRedColor;//fazendo as cores da vida ficar vermelho quando ele perde a vida
+
+            if (gameController.fruitCount >= 3) //Game over
+            {
+                Debug.Log("Game Over");
+            }
         }
     }
 }
