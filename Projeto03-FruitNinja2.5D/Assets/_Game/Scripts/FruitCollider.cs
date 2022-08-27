@@ -22,6 +22,8 @@ public class FruitCollider : MonoBehaviour
             GameObject tempSplash = Instantiate(gameController.splash, tempFruitSliced.transform.position, Quaternion.identity); //criar splash na posição da fruta inteira
             tempSplash.GetComponentInChildren<SpriteRenderer>().color = fruit.ChangeSplashColor(this.gameObject); //manda a fruta inteira para a função ChangeSplashColor onde ela vai ver o nome da fruta e vai retornar a cor da fruta dela 
 
+            gameController.UpdateScore(this.gameObject.GetComponent<Fruit>().points);
+
             tempFruitSliced.transform.GetChild(0).gameObject.GetComponent<Rigidbody>().AddForce(-tempFruitSliced.transform.GetChild(0).transform.right * Random.Range(5f, 10f), ForceMode.Impulse); //uma parte da fruta partica vai para  a esquerda
             tempFruitSliced.transform.GetChild(1).gameObject.GetComponent<Rigidbody>().AddForce(tempFruitSliced.transform.GetChild(1).transform.right * Random.Range(5f, 10f), ForceMode.Impulse);  //uma parte da fruta partica vai para  a direita
             Destroy(this.gameObject); //destrói a fruta inteira assim que que toco nela

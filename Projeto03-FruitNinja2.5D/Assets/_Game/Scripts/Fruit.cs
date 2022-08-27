@@ -8,6 +8,7 @@ public class Fruit : MonoBehaviour
     [SerializeField] private float startForce; //força que é aplicada para a formiga ir para cima
     public GameObject fruitSliced; //fruta fatiada
     private GameController gameController;
+    public int points;
     // Start is called before the first frame update
     void Start()
     {
