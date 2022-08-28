@@ -173,6 +173,9 @@ MonoBehaviour:
     rgba: 4278190335
   score: 0
   fruitCount: 0
+  fruitSpawner: {fileID: 651814880}
+  blade: {fileID: 1921281083}
+  destroyer: {fileID: 1896873827}
 --- !u!4 &39994811
 Transform:
   m_ObjectHideFlags: 0
@@ -2149,6 +2152,7 @@ MonoBehaviour:
   btnSounds: {fileID: 1697126005}
   panelGame: {fileID: 1431112755}
   panelPause: {fileID: 2057280379}
+  panelGameOver: {fileID: 594821139}
 --- !u!4 &1050507737
 Transform:
   m_ObjectHideFlags: 0

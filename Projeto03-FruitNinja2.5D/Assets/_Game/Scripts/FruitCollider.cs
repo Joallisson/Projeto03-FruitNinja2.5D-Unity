@@ -38,7 +38,7 @@ public class FruitCollider : MonoBehaviour
 
             if (gameController.fruitCount >= 3) //Game over
             {
-                Debug.Log("Game Over");
+               uIController.ShowPanelGameOver();
             }
         }
     }
