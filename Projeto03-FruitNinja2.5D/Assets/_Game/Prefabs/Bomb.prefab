@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2829681658003668439}
   - component: {fileID: 2829681658003668438}
   - component: {fileID: 2829681658003668437}
+  - component: {fileID: -8834449945576629070}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Bomb
@@ -85,6 +86,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 150
+  startForce: 14
+  beamLight: {fileID: 4212522733756313042, guid: 5dc6a2abef6a06645baaea2f301a72d5, type: 3}
+--- !u!114 &-8834449945576629070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3135743014739972938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c1e771d67026d4e8dde1e4642337d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6199677987346869139
 GameObject:
   m_ObjectHideFlags: 0
