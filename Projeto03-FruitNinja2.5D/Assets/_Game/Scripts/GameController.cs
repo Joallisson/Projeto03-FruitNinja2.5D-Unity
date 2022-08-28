@@ -11,7 +11,8 @@ public class GameController : MonoBehaviour
                                     orangeColor =  new Color32(255, 131, 13, 255), 
                                     pineappleColor = new Color32(185, 101, 23, 255),
                                     pearColor = new Color32(173, 184, 0, 255),
-                                    uIRedColor = new Color32(255, 0, 0, 255); //cor das vidas que o jogador vai perdendo que vai ficando vermelho
+                                    uIRedColor = new Color32(255, 0, 0, 255),
+                                    uIWhiteColor = new Color32(255, 255, 255, 255); //cor das vidas que o jogador vai perdendo que vai ficando vermelho
     
     private UIController uIController;
     [HideInInspector] public int score, fruitCount;
@@ -47,5 +48,15 @@ public class GameController : MonoBehaviour
         fruitSpawner.gameObject.SetActive(false); //desativa o objeto que cria as frutas e as bombas
         destroyer.SetActive(false);
         blade.SetActive(false);
+    }
+
+    public void RestartGame()
+    {
+        score = 0;
+        fruitCount = 0;
+        uIController.txtScore.text = "Score: " + score.ToString();
+        fruitSpawner.gameObject.SetActive(true); //desativa o objeto que cria as frutas e as bombas
+        destroyer.SetActive(true);
+        blade.SetActive(true);
     }
 }
