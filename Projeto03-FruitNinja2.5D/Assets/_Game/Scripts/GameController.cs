@@ -17,11 +17,15 @@ public class GameController : MonoBehaviour
     private UIController uIController;
     [HideInInspector] public int score, fruitCount;
     [SerializeField] private GameObject fruitSpawner, blade, destroyer;
+    private int highscore;
+    private GameData gameData;
 
     // Start is called before the first frame update
     void Start()
     {
         uIController = FindObjectOfType<UIController>();
+        gameData = FindObjectOfType<GameData>();
+        highscore = gameData.GetScore();
         score = 0;
         fruitCount = 0;
     }
@@ -48,6 +52,11 @@ public class GameController : MonoBehaviour
         fruitSpawner.gameObject.SetActive(false); //desativa o objeto que cria as frutas e as bombas
         destroyer.SetActive(false);
         blade.SetActive(false);
+
+        if(score > highscore)
+        {
+            gameData.SaveScore(score);
+        }
     }
 
     public void RestartGame()

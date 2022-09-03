@@ -11,12 +11,15 @@ public class UIController : MonoBehaviour
     public Button btnPause, btnResume, btnMainMenu, btnClosePauseMenu, btnSounds;
     public GameObject panelGame, panelPause, panelGameOver;
     private GameController gameController;
+    private GameData gameData;
     // Start is called before the first frame update
     void Start()
     {
         panelGame.gameObject.SetActive(true);
         panelPause.gameObject.SetActive(false);
         gameController = FindObjectOfType<GameController>();
+        gameData = FindObjectOfType<GameData>();
+        txtHighScore.text = "Highscore: " + gameData.GetScore().ToString();
     }
 
     // Update is called once per frame
@@ -43,6 +46,7 @@ public class UIController : MonoBehaviour
         panelGameOver.gameObject.SetActive(true);
         panelGame.SetActive(false); //desativa o painel de game
         gameController.GameOver();
+        txtHighScore.text = "Highscore: " + gameData.GetScore().ToString();
     }
 
     public IEnumerator ShowBombPanelGameOver()
@@ -51,6 +55,7 @@ public class UIController : MonoBehaviour
         panelGame.SetActive(false); //desativa o painel de game
         yield return new WaitForSeconds(3f);
         panelGameOver.gameObject.SetActive(true);
+        txtHighScore.text = "Highscore: " + gameData.GetScore().ToString();
     }
 
     public void ButtonRestartGame()
