@@ -19,6 +19,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject fruitSpawner, blade, destroyer;
     private int highscore;
     private GameData gameData;
+    public Transform allObjects, allSplashes, allSlicedFruits;
 
     // Start is called before the first frame update
     void Start()

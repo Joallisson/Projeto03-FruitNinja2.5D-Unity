@@ -26,10 +26,12 @@ public class FruitCollider : MonoBehaviour
             target.gameObject.GetComponent<AudioSource>().Play(); //tocando o áudio da blade
 
             GameObject tempFruitSliced = Instantiate(fruit.fruitSliced, transform.position, Quaternion.identity); //criar uma fruta fatiada na posição da fruta inteira
+            tempFruitSliced.transform.parent = gameController.allSlicedFruits;
             tempFruitSliced.gameObject.GetComponent<AudioSource>().clip = audioController.fruitSplashAudio[Random.Range(0, audioController.fruitSplashAudio.Length)];  //selecionando áudio aleatório do array de áudios
             tempFruitSliced.gameObject.GetComponent<AudioSource>().Play();//tocando o áudio das frutas cortadas
 
             GameObject tempSplash = Instantiate(gameController.splash, tempFruitSliced.transform.position, Quaternion.identity); //criar splash na posição da fruta inteira
+            tempSplash.transform.parent = gameController.allSplashes;
             tempSplash.GetComponentInChildren<SpriteRenderer>().color = fruit.ChangeSplashColor(this.gameObject); //manda a fruta inteira para a função ChangeSplashColor onde ela vai ver o nome da fruta e vai retornar a cor da fruta dela 
 
             gameController.UpdateScore(this.gameObject.GetComponent<Fruit>().points);
@@ -38,6 +40,7 @@ public class FruitCollider : MonoBehaviour
             tempFruitSliced.transform.GetChild(1).gameObject.GetComponent<Rigidbody>().AddForce(tempFruitSliced.transform.GetChild(1).transform.right * Random.Range(5f, 10f), ForceMode.Impulse);  //uma parte da fruta partica vai para  a direita
             Destroy(this.gameObject); //destrói a fruta inteira assim que que toco nela
             Destroy(tempFruitSliced, 5f); //depois de 5 segundos destrói a fruta partida
+             Destroy(tempSplash, 3f); //depois de 5 segundos destrói a fruta partida
         }
         else if(target.gameObject.CompareTag("Destroyer")) //Contando as frutas que o jogador não cortou
         {
