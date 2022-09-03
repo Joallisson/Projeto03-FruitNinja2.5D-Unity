@@ -183,6 +183,7 @@ MonoBehaviour:
   allObjects: {fileID: 785904535}
   allSplashes: {fileID: 656188091}
   allSlicedFruits: {fileID: 1279577020}
+  soundOnOff: 0
 --- !u!4 &39994811
 Transform:
   m_ObjectHideFlags: 0
@@ -3230,6 +3231,8 @@ MonoBehaviour:
   panelGame: {fileID: 1431112755}
   panelPause: {fileID: 2057280379}
   panelGameOver: {fileID: 594821139}
+  imgSoundOn: {fileID: 21300000, guid: 967aab30d466613409c60a93eee109b8, type: 3}
+  imgSoundOff: {fileID: 21300000, guid: 9aeac1c0750d43d498b7e62859763888, type: 3}
 --- !u!4 &1050507737
 Transform:
   m_ObjectHideFlags: 0
@@ -4368,7 +4371,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1697126006}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1050507736}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: ButtonSounds
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1697126006
 MonoBehaviour:
   m_ObjectHideFlags: 0

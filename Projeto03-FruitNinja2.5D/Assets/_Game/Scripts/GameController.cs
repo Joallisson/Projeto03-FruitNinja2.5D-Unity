@@ -20,15 +20,19 @@ public class GameController : MonoBehaviour
     private int highscore;
     private GameData gameData;
     public Transform allObjects, allSplashes, allSlicedFruits;
+    [HideInInspector] public bool soundOnOff;
 
     // Start is called before the first frame update
     void Start()
     {
+        soundOnOff = true;
         uIController = FindObjectOfType<UIController>();
         gameData = FindObjectOfType<GameData>();
         highscore = gameData.GetScore();
         score = 0;
         fruitCount = 0;
+        Initialize();
+        SoundsData();
     }
 
     // Update is called once per frame
@@ -36,6 +40,21 @@ public class GameController : MonoBehaviour
     {
         
     }
+
+   private void Initialize()
+   {
+        int soundValue = gameData.GetSounds();
+        if (soundValue == 1)
+        {
+            soundOnOff = true;
+            uIController.btnSounds.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = uIController.imgSoundOn;
+        }
+        else
+        {
+            soundOnOff = false;
+            uIController.btnSounds.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = uIController.imgSoundOff;
+        }
+   }
 
     public void StartGame()
     {
@@ -68,5 +87,19 @@ public class GameController : MonoBehaviour
         fruitSpawner.gameObject.SetActive(true); //desativa o objeto que cria as frutas e as bombas
         destroyer.SetActive(true);
         blade.SetActive(true);
+    }
+
+    public void SoundsData()
+    {
+        if (soundOnOff)
+        {
+            gameData.SaveSounds(1);
+            soundOnOff = true;
+        }
+        else
+        {
+            gameData.SaveSounds(0);
+            soundOnOff = false;
+        }
     }
 }

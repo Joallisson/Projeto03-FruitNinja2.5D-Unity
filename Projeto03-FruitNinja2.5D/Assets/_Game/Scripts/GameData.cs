@@ -25,4 +25,14 @@ public class GameData : MonoBehaviour
     {
         return PlayerPrefs.GetInt("highscore");
     }
+
+    public void SaveSounds(int value)
+    {
+        PlayerPrefs.SetInt("sounds", value);
+    }
+
+    public int GetSounds()
+    {
+        return PlayerPrefs.GetInt("sounds");
+    }
 }
