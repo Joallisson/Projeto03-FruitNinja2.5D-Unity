@@ -12,13 +12,15 @@ public class UIController : MonoBehaviour
     public GameObject panelGame, panelPause, panelGameOver;
     private GameController gameController;
     private GameData gameData;
-    public Sprite imgSoundOn, imgSoundOff;
+    public Sprite imgSoundOn, imgSoundOff;  
+    private AudioController audioController;
     // Start is called before the first frame update
     void Start()
     {
         panelGame.gameObject.SetActive(true);
         panelPause.gameObject.SetActive(false);
         gameController = FindObjectOfType<GameController>();
+        audioController = FindObjectOfType<AudioController>();
         gameData = FindObjectOfType<GameData>();
         txtHighScore.text = "Highscore: " + gameData.GetScore().ToString();
     }
@@ -85,5 +87,7 @@ public class UIController : MonoBehaviour
             gameData.SaveSounds(1);
             btnSounds.gameObject.GetComponent<Image>().sprite = imgSoundOn;
         }
+
+        audioController.EnableAndDisableAudio();
     }
 }
