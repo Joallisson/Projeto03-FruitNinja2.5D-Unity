@@ -58,7 +58,7 @@ public class GameController : MonoBehaviour
 
     public void StartGame()
     {
-        uIController.txtScore.text = "Score: " + score;
+        RestartGame();
     }
 
     public void UpdateScore(int points)
@@ -83,7 +83,6 @@ public class GameController : MonoBehaviour
     {
         score = 0;
         fruitCount = 0;
-        uIController.txtScore.text = "Score: " + score.ToString();
         fruitSpawner.gameObject.SetActive(true); //desativa o objeto que cria as frutas e as bombas
         destroyer.SetActive(true);
         blade.SetActive(true);
@@ -100,6 +99,31 @@ public class GameController : MonoBehaviour
         {
             gameData.SaveSounds(0);
             soundOnOff = false;
+        }
+    }
+
+    public void BackMainMenu()
+    {
+        score = 0;
+        fruitCount = 0;
+        fruitSpawner.gameObject.SetActive(false);
+        blade.gameObject.SetActive(false);
+        destroyer.gameObject.SetActive(false);
+        Time.timeScale = 1f;
+
+        foreach(Transform child in allObjects)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach(Transform child in allSlicedFruits)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach(Transform child in allSplashes)
+        {
+            Destroy(child.gameObject);
         }
     }
 }

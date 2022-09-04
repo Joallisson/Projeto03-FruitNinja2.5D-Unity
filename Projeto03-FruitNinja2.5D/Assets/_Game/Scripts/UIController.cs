@@ -6,10 +6,10 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    public TMP_Text txtScore, txtHighScore;
+    public TMP_Text txtScore, txtHighScoreGame, txtHighScoreGameover, txtHighScoreMainMenu;
     public Image[] imgLives;
     public Button btnPause, btnResume, btnMainMenu, btnClosePauseMenu, btnSounds;
-    public GameObject panelGame, panelPause, panelGameOver;
+    public GameObject panelGame, panelPause, panelGameOver, panelMainMenu;
     private GameController gameController;
     private GameData gameData;
     public Sprite imgSoundOn, imgSoundOff;  
@@ -17,12 +17,15 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        panelGame.gameObject.SetActive(true);
+        panelGame.gameObject.SetActive(false);
+        panelGameOver.gameObject.SetActive(false);
         panelPause.gameObject.SetActive(false);
+        panelMainMenu.gameObject.SetActive(true);
         gameController = FindObjectOfType<GameController>();
         audioController = FindObjectOfType<AudioController>();
         gameData = FindObjectOfType<GameData>();
-        txtHighScore.text = "Highscore: " + gameData.GetScore().ToString();
+        txtHighScoreGame.text = "Highscore: " + gameData.GetScore().ToString();
+        txtHighScoreMainMenu.text = "Highscore: " + gameData.GetScore().ToString();
     }
 
     // Update is called once per frame
@@ -50,7 +53,8 @@ public class UIController : MonoBehaviour
         panelGameOver.gameObject.SetActive(true);
         panelGame.SetActive(false); //desativa o painel de game
         gameController.GameOver();
-        txtHighScore.text = "Highscore: " + gameData.GetScore().ToString();
+        txtHighScoreGame.text = "Highscore: " + gameData.GetScore().ToString();
+        txtHighScoreGameover.text = "Highscore: " + gameData.GetScore().ToString();
     }
 
     public IEnumerator ShowBombPanelGameOver()
@@ -59,13 +63,14 @@ public class UIController : MonoBehaviour
         panelGame.SetActive(false); //desativa o painel de game
         yield return new WaitForSeconds(3f);
         panelGameOver.gameObject.SetActive(true);
-        txtHighScore.text = "Highscore: " + gameData.GetScore().ToString();
+        txtHighScoreGame.text = "Highscore: " + gameData.GetScore().ToString();
     }
 
     public void ButtonRestartGame()
     {
         panelGame.gameObject.SetActive(true);
         panelGameOver.SetActive(false);
+        txtScore.text = "Score: " + gameController.score.ToString();
         gameController.RestartGame();
 
         for(int i = 0; i < imgLives.Length; i++){
@@ -89,5 +94,27 @@ public class UIController : MonoBehaviour
         }
 
         audioController.EnableAndDisableAudio();
+    }
+
+    public void ButtonBackMainMenu()
+    {
+        panelGame.gameObject.SetActive(false);
+        panelGameOver.gameObject.SetActive(false);
+        panelPause.gameObject.SetActive(false);
+        panelMainMenu.gameObject.SetActive(true);
+        gameController.BackMainMenu();
+        txtHighScoreMainMenu.text = "Highscore: " + gameData.GetScore().ToString();
+
+        for(int i = 0; i < imgLives.Length; i++){
+            imgLives[i].color = gameController.uIWhiteColor;
+        }
+    }
+
+    public void ButtonStartGame()
+    {
+        panelMainMenu.gameObject.SetActive(false);
+        panelGame.gameObject.SetActive(true);
+        gameController.StartGame();
+        txtScore.text = "Score: " + gameController.score.ToString();
     }
 }
