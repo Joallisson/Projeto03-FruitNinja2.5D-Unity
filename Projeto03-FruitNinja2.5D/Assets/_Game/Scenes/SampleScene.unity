@@ -183,7 +183,9 @@ MonoBehaviour:
   allObjects: {fileID: 785904535}
   allSplashes: {fileID: 656188091}
   allSlicedFruits: {fileID: 1279577020}
+  allLightBeams: {fileID: 1219764265}
   soundOnOff: 0
+  gameStart: 0
 --- !u!4 &39994811
 Transform:
   m_ObjectHideFlags: 0
@@ -324,7 +326,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 150482193}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1050507736}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: ButtonSounds
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &150482193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2588,7 +2602,7 @@ GameObject:
   - component: {fileID: 774253426}
   - component: {fileID: 774253425}
   m_Layer: 5
-  m_Name: Button Pause
+  m_Name: Button Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2659,7 +2673,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1050507736}
         m_TargetAssemblyTypeName: UIController, Assembly-CSharp
-        m_MethodName: ButtonPauseGame
+        m_MethodName: ButtonExitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3267,7 +3281,8 @@ MonoBehaviour:
   btnResume: {fileID: 261947321}
   btnMainMenu: {fileID: 370308360}
   btnClosePauseMenu: {fileID: 1348090958}
-  btnSounds: {fileID: 1697126005}
+  btnSoundsMenuPause: {fileID: 1697126005}
+  btnSoundsMainMenu: {fileID: 150482192}
   panelGame: {fileID: 1431112755}
   panelPause: {fileID: 2057280379}
   panelGameOver: {fileID: 594821139}
@@ -3363,6 +3378,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1084790739}
   m_CullTransparentMesh: 1
+--- !u!1 &1219764264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1219764265}
+  m_Layer: 0
+  m_Name: All Light Beams
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1219764265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219764264}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1966712666}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1266601025
 GameObject:
   m_ObjectHideFlags: 0
@@ -4938,6 +4983,7 @@ Transform:
   - {fileID: 785904535}
   - {fileID: 656188091}
   - {fileID: 1279577020}
+  - {fileID: 1219764265}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -8,16 +8,15 @@ public class FruitSpawner : MonoBehaviour
     [SerializeField] private Transform[] spawnPoints; //esse array vai guardar os objetos de onde as frutas serão instanciadas
     [SerializeField] private float minDelay, maxDelay; //intervalo de tempo em que as frutas serão instanciadas
     private GameController gameController;
+    [HideInInspector] public Coroutine spawnCorotine;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    private void Awake() {
         gameController = FindObjectOfType<GameController>();
-        StartCoroutine(Spawn());
     }
-    private IEnumerator Spawn() //Esse método instancia novas frutas
+
+    public IEnumerator Spawn() //Esse método instancia novas frutas
     {
-        while(true)
+        while(gameController.gameStart)
         {
             float delay = Random.Range(minDelay, maxDelay); //intervalo de tempo entre cada instacia das frutas
             yield return new WaitForSeconds(delay);

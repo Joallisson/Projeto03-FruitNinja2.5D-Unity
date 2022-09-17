@@ -16,7 +16,7 @@ public class BombCollider : MonoBehaviour
         if(target.gameObject.CompareTag("Blade"))//se o jogador tocar na bomba
         {
             bomb.BombGameOver(); //vai chamar o método para criar o game over
-            StartCoroutine(uIController.ShowBombPanelGameOver());
+            uIController.ShowBombPanelGameOver();
         }
     }
 }

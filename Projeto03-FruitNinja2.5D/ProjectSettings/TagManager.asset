@@ -56,3 +56,6 @@ TagManager:
   - name: Blade
     uniqueID: 1456580481
     locked: 0
+  - name: Sparks
+    uniqueID: 2133780305
+    locked: 0

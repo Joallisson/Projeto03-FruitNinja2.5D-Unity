@@ -19,14 +19,17 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject fruitSpawner, blade, destroyer;
     private int highscore;
     private GameData gameData;
-    public Transform allObjects, allSplashes, allSlicedFruits;
-    [HideInInspector] public bool soundOnOff;
+    public Transform allObjects, allSplashes, allSlicedFruits, allLightBeams;
+    [HideInInspector] public bool soundOnOff, gameStart;
+    private FruitSpawner fruitSpawnerScript;
 
     // Start is called before the first frame update
     void Start()
     {
         soundOnOff = true;
+        gameStart = false;
         uIController = FindObjectOfType<UIController>();
+        fruitSpawnerScript = FindObjectOfType<FruitSpawner>();
         gameData = FindObjectOfType<GameData>();
         highscore = gameData.GetScore();
         score = 0;
@@ -47,12 +50,14 @@ public class GameController : MonoBehaviour
         if (soundValue == 1)
         {
             soundOnOff = true;
-            uIController.btnSounds.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = uIController.imgSoundOn;
+            uIController.btnSoundsMenuPause.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = uIController.imgSoundOn;
+            uIController.btnSoundsMainMenu.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = uIController.imgSoundOn;
         }
         else
         {
             soundOnOff = false;
-            uIController.btnSounds.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = uIController.imgSoundOff;
+            uIController.btnSoundsMenuPause.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = uIController.imgSoundOff;
+            uIController.btnSoundsMainMenu.gameObject.GetComponent<UnityEngine.UI.Image>().sprite = uIController.imgSoundOff;
         }
    }
 
@@ -72,6 +77,8 @@ public class GameController : MonoBehaviour
         fruitSpawner.gameObject.SetActive(false); //desativa o objeto que cria as frutas e as bombas
         destroyer.SetActive(false);
         blade.SetActive(false);
+        gameStart = false;
+        StopCoroutine(fruitSpawnerScript.spawnCorotine);
 
         if(score > highscore)
         {
@@ -86,6 +93,14 @@ public class GameController : MonoBehaviour
         fruitSpawner.gameObject.SetActive(true); //desativa o objeto que cria as frutas e as bombas
         destroyer.SetActive(true);
         blade.SetActive(true);
+        gameStart = true;
+        fruitSpawnerScript = FindObjectOfType<FruitSpawner>();
+        fruitSpawnerScript.spawnCorotine = StartCoroutine(fruitSpawnerScript.Spawn());
+
+        foreach(Transform child in allLightBeams)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     public void SoundsData()
@@ -110,6 +125,8 @@ public class GameController : MonoBehaviour
         blade.gameObject.SetActive(false);
         destroyer.gameObject.SetActive(false);
         Time.timeScale = 1f;
+        gameStart = false;
+        StopCoroutine(fruitSpawnerScript.spawnCorotine);
 
         foreach(Transform child in allObjects)
         {
@@ -122,6 +139,11 @@ public class GameController : MonoBehaviour
         }
 
         foreach(Transform child in allSplashes)
+        {
+            Destroy(child.gameObject);
+        }
+
+        foreach(Transform child in allLightBeams)
         {
             Destroy(child.gameObject);
         }

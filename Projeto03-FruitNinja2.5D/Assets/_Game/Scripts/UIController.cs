@@ -8,7 +8,7 @@ public class UIController : MonoBehaviour
 {
     public TMP_Text txtScore, txtHighScoreGame, txtHighScoreGameover, txtHighScoreMainMenu;
     public Image[] imgLives;
-    public Button btnPause, btnResume, btnMainMenu, btnClosePauseMenu, btnSounds;
+    public Button btnPause, btnResume, btnMainMenu, btnClosePauseMenu, btnSoundsMenuPause, btnSoundsMainMenu;
     public GameObject panelGame, panelPause, panelGameOver, panelMainMenu;
     private GameController gameController;
     private GameData gameData;
@@ -57,21 +57,21 @@ public class UIController : MonoBehaviour
         txtHighScoreGameover.text = "Highscore: " + gameData.GetScore().ToString();
     }
 
-    public IEnumerator ShowBombPanelGameOver()
+    public void ShowBombPanelGameOver()
     {
         gameController.GameOver();
         panelGame.SetActive(false); //desativa o painel de game
-        yield return new WaitForSeconds(3f);
         panelGameOver.gameObject.SetActive(true);
         txtHighScoreGame.text = "Highscore: " + gameData.GetScore().ToString();
+        txtHighScoreGameover.text = "Highscore: " + gameData.GetScore().ToString();
     }
 
     public void ButtonRestartGame()
     {
         panelGame.gameObject.SetActive(true);
         panelGameOver.SetActive(false);
-        txtScore.text = "Score: " + gameController.score.ToString();
         gameController.RestartGame();
+        txtScore.text = "Score: " + gameController.score.ToString();
 
         for(int i = 0; i < imgLives.Length; i++){
             imgLives[i].color = gameController.uIWhiteColor;
@@ -84,13 +84,15 @@ public class UIController : MonoBehaviour
         {
             gameController.soundOnOff = false;
             gameData.SaveSounds(0);
-            btnSounds.gameObject.GetComponent<Image>().sprite = imgSoundOff;
+            btnSoundsMenuPause.gameObject.GetComponent<Image>().sprite = imgSoundOff;
+            btnSoundsMainMenu.gameObject.GetComponent<Image>().sprite = imgSoundOff;
         }
         else
         {
             gameController.soundOnOff = true;
             gameData.SaveSounds(1);
-            btnSounds.gameObject.GetComponent<Image>().sprite = imgSoundOn;
+            btnSoundsMenuPause.gameObject.GetComponent<Image>().sprite = imgSoundOn;
+            btnSoundsMainMenu.gameObject.GetComponent<Image>().sprite = imgSoundOn;
         }
 
         audioController.EnableAndDisableAudio();
@@ -116,5 +118,11 @@ public class UIController : MonoBehaviour
         panelGame.gameObject.SetActive(true);
         gameController.StartGame();
         txtScore.text = "Score: " + gameController.score.ToString();
+    }
+
+    public void ButtonExitGame()
+    {
+        AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
+        activity.Call<bool>("moveTaskToBack", true);
     }
 }
